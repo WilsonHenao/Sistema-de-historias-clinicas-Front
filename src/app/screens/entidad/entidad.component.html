@@ -1,0 +1,43 @@
+<h3>Entidades de salud</h3>
+
+<p-table [value]="entidad" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+    currentPageReportTemplate="Mostrando {first} a {last} de 
+        {totalRecords} entidades" [rowsPerPageOptions]="[10,15]" #dt1 dataKey="id" [loading]="loading"
+    [globalFilterFields]="['nombre']">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex">
+            <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                (click)="clear(dt1)"></button>
+            <span class="p-input-icon-left p-ml-auto">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt1.filterGlobal($event.target, 
+                    'contains')" placeholder="Buscar">
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-entidad>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="3"></td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-table>
