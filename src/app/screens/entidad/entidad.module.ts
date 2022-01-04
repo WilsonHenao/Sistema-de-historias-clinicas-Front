@@ -13,6 +13,7 @@ import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
 import {RippleModule} from 'primeng/ripple';
 import {InputTextModule} from 'primeng/inputtext';
+import {ToastModule} from 'primeng/toast';
 
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
@@ -44,7 +45,8 @@ import { EntidadDialogComponent } from './components/entidad-dialog/entidad-dial
     MatInputModule,
     ConfirmDialogModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    ToastModule
   ]
 })
 export class EntidadModule { }

@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EntidadDeSalud } from 'src/app/model/EntidadDeSalud';
 import { ServicioService } from 'src/app/services/servicio.service';
+
+type EntidadData = {
+  entidad: EntidadDeSalud;
+  tipo: 'nuevo' | 'editar'
+}
 
 @Component({
   selector: 'app-entidad-dialog',
@@ -10,36 +15,62 @@ import { ServicioService } from 'src/app/services/servicio.service';
   styleUrls: ['./entidad-dialog.component.css']
 })
 export class EntidadDialogComponent implements OnInit {
-
-  constructor(public dialogRef: MatDialogRef<EntidadDialogComponent>, 
-    private serviceEntidad: ServicioService) { }
-
   public entidad: EntidadDeSalud = new EntidadDeSalud();
+  public formEntidad: FormGroup;
+  public tipo: 'nuevo' | 'editar';
 
-  formEntidad = new FormGroup({
-    nombre: new FormControl("", Validators.required),
-    direccion: new FormControl("", Validators.required),
-    telefono: new FormControl("", Validators.required)
-  })
+  constructor(
+    public dialogRef: MatDialogRef<EntidadDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: EntidadData,
+    private serviceEntidad: ServicioService
+  ) {
+    this.entidad = data.entidad;
+    this.tipo = data.tipo;
+    this.formEntidad = this.inicializarFormEntidad();
+  }
 
   ngOnInit(): void {
   }
 
-  onNoClick(): void{
-    this.dialogRef.close()
+  inicializarFormEntidad(): FormGroup {
+    return new FormGroup({
+      nombre: new FormControl(this.entidad?.nombre, Validators.required),
+      direccion: new FormControl(this.entidad?.direccion, Validators.required),
+      telefono: new FormControl(this.entidad?.telefono, Validators.required)
+    });
   }
 
-  enviarEntidad(): void{
+  onNoClick(): void {
+    this.dialogRef.close(this.data);
+  }
+
+  enviarEntidad(): void {
     this.entidad.nombre = this.formEntidad.get("nombre")?.value;
     this.entidad.direccion = this.formEntidad.get("direccion")?.value;
     this.entidad.telefono = this.formEntidad.get("telefono")?.value;
 
-    this.serviceEntidad.enviarEntidad(this.entidad).subscribe(respuesta => {
-      console.log(respuesta);
-    },
-    error => {
-      console.log("error");
-    })
+    if(this.tipo === 'nuevo'){
+      this.serviceEntidad.enviarEntidad(this.entidad).subscribe(
+        respuesta => {
+          console.log(respuesta);
+        },
+        error => {
+          console.log("error");
+        }
+      );
+    }
+
+    if(this.tipo === 'editar'){
+      this.serviceEntidad.actualizarEntidad(this.entidad).subscribe(
+        respuesta => {
+          console.log(respuesta);
+        },
+        error => {
+          console.log("error");
+        }
+      )
+    }
+
   }
 
 }

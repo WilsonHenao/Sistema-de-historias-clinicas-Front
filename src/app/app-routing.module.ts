@@ -18,7 +18,8 @@ const routes: Routes = [
   {
     path: 'historia_clinica', 
     loadChildren: () => import('./screens/entidad/entidad.module').then(m => m.EntidadModule)
-  }
+  },
+  { path: '', pathMatch: 'full', redirectTo: 'entidad' },
 ];
 
 @NgModule({

@@ -1,51 +1,63 @@
+<p-toast></p-toast>
+
 <div class="title">
-    <h2>Entidades de salud</h2>
-    <p-button type="button" icon="pi pi-plus" label="Añadir" styleClass="p-button-text" 
-    (onClick)="openNew()"></p-button>
+  <h2>Entidades de salud</h2>
+  <p-button type="button" icon="pi pi-plus" label="Añadir" styleClass="p-button-text" (onClick)="openNew()">
+  </p-button>
 </div>
 
-<p-table [value]="entidad" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" 
-responsiveLayout="scroll"
-    currentPageReportTemplate="Mostrando {first} a {last} de 
-        {totalRecords} entidades" [rowsPerPageOptions]="[10,15]" #dt1 dataKey="id" [loading]="loading"
-    [globalFilterFields]="['nombre']">
-    <ng-template pTemplate="caption">
-        <div class="p-d-flex">
-            <span class="p-input-icon-left p-ml-auto">
-                <i class="pi pi-search"></i>
-                <input pInputText type="text" (input)="dt1.filterGlobal($event.target, 
-                    'contains')" placeholder="Buscar">
-            </span>
-        </div>
-    </ng-template>
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Nombre</th>
-            <th>Direccion</th>
-            <th>Telefono</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-entidad>
-        <tr>
-            <td>{{entidad.nombre}}</td>
-            <td>{{entidad.direccion}}</td>
-            <td>{{entidad.telefono}}</td>
-            <td>
-                <button pButton pRipple icon="pi pi-pencil" 
-                class="p-button-rounded p-button-text" title="Editar"></button>
-            </td>
-            <td>
-                <button pButton pRipple icon="pi pi-trash" 
-                class="p-button-rounded p-button-text" 
-                title="Eliminar"></button>
-            </td>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="emptymessage">
-        <tr>
-            <td colspan="3"></td>
-        </tr>
-    </ng-template>
+<p-table
+  #dt
+  [rows]="10"
+  dataKey="id"
+  [value]="entidad"
+  [paginator]="true"
+  [loading]="loading"
+  responsiveLayout="scroll"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[10,15]" 
+  [globalFilterFields]="['nombre']"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entidades"
+>
+  <ng-template pTemplate="caption">
+    <div class="p-d-flex">
+      <span class="p-input-icon-left p-ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText type="text"
+          (input)="dt.filterGlobal($event.target, 'contains')"
+          placeholder="Buscar"
+        >
+      </span>
+    </div>
+  </ng-template>F
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nombre</th>
+      <th>Direccion</th>
+      <th>Telefono</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-entidad>
+    <tr>
+      <td>{{entidad.nombre}}</td>
+      <td>{{entidad.direccion}}</td>
+      <td>{{entidad.telefono}}</td>
+      <td>
+        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-text" title="Editar"
+        (click)="editarEntidad(entidad)"></button>
+        &nbsp;&nbsp;
+        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text" title="Eliminar"
+          (click)="eliminarEntidad(entidad)"></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="3"></td>
+    </tr>
+  </ng-template>
 </p-table>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

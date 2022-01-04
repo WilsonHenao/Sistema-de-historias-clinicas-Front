@@ -20,6 +20,10 @@ export class ServicioService {
   }
 
   public eliminarEntidad(idEntidad: any){
-    return this.http.delete<any>("http://localhost:8080/entidadDeSalud/" + idEntidad);
+    return this.http.delete<any>("http://localhost:8080/entidadDeSalud?id=" + idEntidad);
+  }
+
+  public actualizarEntidad(entidad: any){
+    return this.http.put<any>("http://localhost:8080/entidadDeSalud", entidad);
   }
 }
