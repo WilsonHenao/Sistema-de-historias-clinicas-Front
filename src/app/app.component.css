@@ -9,12 +9,11 @@
     height: 100%;
     width: 300px;
     padding: 10px;
-    background-color: antiquewhite;
+    background-color: rgb(238, 236, 235);
 }
 
 .content {
     overflow: auto;
-    background-color: aqua ;
     padding: 20px;
     width: 100%;
 }

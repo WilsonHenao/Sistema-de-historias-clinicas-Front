@@ -1,0 +1,22 @@
+
+<h1 mat-dialog-title>Entidad de salud</h1>
+<div mat-dialog-content>
+    <form [formGroup]="formEntidad">
+        <mat-form-field appearance="outline"> 
+            <mat-label>Nombre</mat-label>
+            <input type="text" matInput formControlName="nombre">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Dirección</mat-label>
+            <input type="text" matInput formControlName="direccion">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Telefono</mat-label>
+            <input type="text" matInput formControlName="telefono">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions class="actions">
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+    <button mat-button [disabled]="formEntidad.invalid" mat-dialog-close="true" (click)="enviarEntidad()">Añadir</button>
+</div>
