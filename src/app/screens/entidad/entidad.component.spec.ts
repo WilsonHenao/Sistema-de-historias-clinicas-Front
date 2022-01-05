@@ -8,9 +8,9 @@ describe('InicioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EntidadComponent ]
+      declarations: [EntidadComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

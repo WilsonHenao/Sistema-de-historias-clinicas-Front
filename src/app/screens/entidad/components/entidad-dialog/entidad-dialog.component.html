@@ -1,9 +1,8 @@
-
 <h1 mat-dialog-title>Entidad de salud</h1>
-<ng-container >
+<ng-container>
     <div mat-dialog-content>
         <form [formGroup]="formEntidad">
-            <mat-form-field appearance="outline"> 
+            <mat-form-field appearance="outline">
                 <mat-label>Nombre</mat-label>
                 <input type="text" matInput formControlName="nombre">
             </mat-form-field>
@@ -19,6 +18,7 @@
     </div>
     <div mat-dialog-actions class="actions">
         <button mat-button (click)="onNoClick()">Cancelar</button>
-        <button mat-button [disabled]="formEntidad.invalid" mat-dialog-close="true" (click)="enviarEntidad()">Añadir</button>
+        <button mat-button [disabled]="formEntidad.invalid" mat-dialog-close="true"
+            (click)="enviarEntidad()">Añadir</button>
     </div>
 </ng-container>

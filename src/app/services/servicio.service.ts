@@ -26,4 +26,21 @@ export class ServicioService {
   public actualizarEntidad(entidad: any){
     return this.http.put<any>("http://localhost:8080/entidadDeSalud", entidad);
   }
+
+
+    public enviarPersonalMedico(personal: any){
+    return this.http.post<any>("http://localhost:8080/personalMedico", personal);
+  }
+
+  public listarPersonalMedico(): Observable<any>{
+    return this.http.get<any>("http://localhost:8080/personalMedico");
+  }
+
+  public eliminarPersonalMedico(idPersonal: any){
+    return this.http.delete<any>("http://localhost:8080/personalMedico?id=" + idPersonal);
+  }
+
+  public actualizarPersonalMedico(personal: any){
+    return this.http.put<any>("http://localhost:8080/personalMedico", personal);
+  }
 }

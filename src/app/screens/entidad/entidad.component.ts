@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
-import { Table } from 'primeng/table';
 import { EntidadDeSalud } from 'src/app/model/EntidadDeSalud';
 import { ServicioService } from 'src/app/services/servicio.service';
 import { EntidadDialogComponent } from './components/entidad-dialog/entidad-dialog.component';

@@ -1,12 +1,12 @@
 <p-toast></p-toast>
 
 <div class="title">
-  <h2>Entidades de salud</h2>
+  <h2>Personal médico</h2>
   <p-button type="button" icon="pi pi-plus" label="Añadir" styleClass="p-button-text" (onClick)="openNew()">
   </p-button>
 </div>
 
-<p-table #dt [rows]="10" dataKey="id" [value]="entidad" [paginator]="true" [loading]="loading" responsiveLayout="scroll"
+<p-table #dt [rows]="10" dataKey="id" [value]="personal" [paginator]="true" [loading]="loading" responsiveLayout="scroll"
   [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,15]" [globalFilterFields]="['nombre']"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entidades">
   <ng-template pTemplate="caption">
@@ -19,23 +19,23 @@
   </ng-template>F
   <ng-template pTemplate="header">
     <tr>
-      <th>Nombre</th>
-      <th>Direccion</th>
-      <th>Telefono</th>
+      <th></th>
+      <th></th>
+      <th></th>
       <th></th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-entidad>
+  <ng-template pTemplate="body" let-personal>
     <tr>
-      <td>{{entidad.nombre}}</td>
-      <td>{{entidad.direccion}}</td>
-      <td>{{entidad.telefono}}</td>
+      <td></td>
+      <td></td>
+      <td></td>
       <td>
         <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-text" title="Editar"
-          (click)="editarEntidad(entidad)"></button>
+          (click)="editarPersonalMedico(personal)"></button>
         &nbsp;&nbsp;
         <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text" title="Eliminar"
-          (click)="eliminarEntidad(entidad)"></button>
+          (click)="eliminarPersonalMedico(personal)"></button>
       </td>
     </tr>
   </ng-template>
