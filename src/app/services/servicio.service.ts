@@ -115,8 +115,8 @@ export class ServicioService {
     return this.http.get<any>("http://localhost:8080/consulta");
   }
 
-  public eliminarConsulta(idHistoria: any){
-
+  public eliminarConsulta(idConsulta: any){
+    return this.http.delete<any>("http://localhost:8080/consulta?id=" + idConsulta);
   }
 
   public actualizarConsulta(historia: any){
@@ -142,11 +142,11 @@ export class ServicioService {
 
 
   public enviarProcedimiento(procedimiento: any){
-    return this.http.post<any>("http://localhost:8080/procedimiento", procedimiento);
+    return this.http.post<any>("http://localhost:8080/procedimientos", procedimiento);
   }
 
   public listarProcedimiento(): Observable<any>{
-    return this.http.get<any>("http://localhost:8080/procedimiento");
+    return this.http.get<any>("http://localhost:8080/procedimientos");
   }
 
   public eliminarProcedimiento(idHistoria: any){

@@ -81,7 +81,7 @@ export class HistoriaClinicaComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       acceptLabel: 'Sí',
       accept: () => {
-        this.serviceHistoriaClinica.eliminarPaciente(historia.id).subscribe(respuesta => {
+        this.serviceHistoriaClinica.eliminarConsulta(historia.id).subscribe(respuesta => {
           console.log(respuesta);
           this.listarHistoriasClinicas();
         }, error => {

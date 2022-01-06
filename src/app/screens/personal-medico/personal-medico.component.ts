@@ -83,7 +83,7 @@ export class PersonalMedicoComponent implements OnInit {
 
   eliminarPersonalMedico(personal: PersonalMedico) {
     this.confirmationService.confirm({
-      message: '¿Está seguro de querer eliminar ' + personal.nombre + '?',
+      message: '¿Está seguro de querer eliminar ' + personal.nombre + personal.apellido + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       acceptLabel: 'Sí',

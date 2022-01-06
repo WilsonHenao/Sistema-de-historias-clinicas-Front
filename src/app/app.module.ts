@@ -10,6 +10,7 @@ import { InicioComponent } from './components/inicio/inicio.component';
 
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 
@@ -29,7 +30,8 @@ import {MatButtonModule} from '@angular/material/button';
     BrowserAnimationsModule,
     HttpClientModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

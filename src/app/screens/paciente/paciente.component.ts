@@ -86,20 +86,23 @@ export class PacienteComponent implements OnInit {
 
   eliminarPaciente(paciente: Paciente) {
     this.confirmationService.confirm({
-      message: '¿Está seguro de querer eliminar ' + paciente.nombre + '?',
+      message: '¿Está seguro de querer eliminar ' + paciente.nombre + paciente.apellido + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       acceptLabel: 'Sí',
       accept: () => {
         this.servicePaciente.eliminarPaciente(paciente.id).subscribe(respuesta => {
           console.log(respuesta);
+          this.servicePaciente.eliminarContacto(paciente.idContactoDeEmergencia).subscribe(respuesta => {
+            console.log(respuesta);
+          })
           this.listarPacientes();
         }, error => {
           console.log(error);
         })
         this.messageService.add({
           severity: 'success',
-          detail: 'Personal médico eliminado',
+          detail: 'Paciente eliminado',
           life: 3000
         });
       }

@@ -19,8 +19,6 @@
         <tr>
             <th>Fecha de creacion de historia clinica</th>
             <th>Tipo de historia clinica</th>
-            <th>Paciente</th>
-            <th>Personal médico</th>
             <th></th>
         </tr>
     </ng-template>
@@ -28,8 +26,6 @@
         <tr>
             <td>{{historiaClinica.fechaDeConsulta}}</td>
             <td>{{historiaClinica.tipoDeHistoriaClinica}}</td>
-            <td></td>
-            <td></td>
             <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-text" title="Editar" (click)="editarHistoriaClinica(historiaClinica)"></button> &nbsp;&nbsp;
                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text" title="Eliminar" (click)="eliminarHistoriaClinica(historiaClinica)"></button>

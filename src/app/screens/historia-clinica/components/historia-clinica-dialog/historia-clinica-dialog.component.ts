@@ -124,11 +124,11 @@ export class HistoriaClinicaDialogComponent implements OnInit {
     return new FormGroup({
       fechaDeIngreso: new FormControl(this.urgencias?.fechaDeIngreso, Validators.required),
       horaDeIngreso: new FormControl(this.urgencias?.horaDeIngreso, Validators.required),
-      fechaDeSalida: new FormControl(this.urgencias?.fechaDeSalida, Validators.required),
-      horaDeSalida: new FormControl(this.urgencias?.horaDeSalida, Validators.required),
+      fechaDeSalida: new FormControl(this.urgencias?.fechaDeSalida),
+      horaDeSalida: new FormControl(this.urgencias?.horaDeSalida),
       causaExterna: new FormControl(this.urgencias?.causaExterna, Validators.required),
       conducta: new FormControl(this.urgencias?.conducta, Validators.required),
-      horasDeObservacion: new FormControl(this.urgencias?.horasDeObservacion, Validators.required),
+      horasDeObservacion: new FormControl(this.urgencias?.horasDeObservacion),
     })
   }
 
