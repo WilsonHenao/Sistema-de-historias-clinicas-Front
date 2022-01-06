@@ -1,0 +1,49 @@
+<p-toast></p-toast>
+
+<div class="title">
+    <h2>Pacientes</h2>
+    <p-button type="button" icon="pi pi-plus" label="Añadir" styleClass="p-button-text" (onClick)="openNew()">
+    </p-button>
+</div>
+
+<p-table #dt [rows]="5" dataKey="id" [value]="pacientes" [paginator]="true" [loading]="loading" responsiveLayout="scroll" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,15]" [globalFilterFields]="['nombre']" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} pacientes">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex">
+            <span class="p-input-icon-left p-ml-auto">
+        <i class="pi pi-search"></i>
+        <input pInputText type="text" (input)="dt.filterGlobal($event.target, 'contains')" placeholder="Buscar">
+      </span>
+        </div>
+    </ng-template>F
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nombre(s)</th>
+            <th>Apellidos</th>
+            <th>Documento de identidad</th>
+            <th>Estado</th>
+            <th colspan="2">Contacto de emergencia</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pacientes>
+        <tr>
+            <td>{{pacientes.nombre}}</td>
+            <td>{{pacientes.apellido}}</td>
+            <td>{{pacientes.documentoDeIdentidad}}</td>
+            <td>{{pacientes.estado}}</td>
+            <td>{{pacientes.nombreContacto}}</td>
+            <td>{{pacientes.telefonoContacto}}</td>
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-text" title="Editar" (click)="editarPaciente(pacientes)"></button> &nbsp;&nbsp;
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text" title="Eliminar" (click)="eliminarPaciente(pacientes)"></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="3"></td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

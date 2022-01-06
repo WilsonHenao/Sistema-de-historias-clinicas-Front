@@ -1,0 +1,46 @@
+<p-toast></p-toast>
+
+<div class="title">
+    <h2>Historias Clinicas</h2>
+    <p-button type="button" icon="pi pi-plus" label="Añadir" styleClass="p-button-text" (onClick)="openNew()">
+    </p-button>
+</div>
+
+<p-table #dt [rows]="5" dataKey="id" [value]="historiaClinica" [paginator]="true" [loading]="loading" responsiveLayout="scroll" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,15]" [globalFilterFields]="['nombre']" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} pacientes">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex">
+            <span class="p-input-icon-left p-ml-auto">
+        <i class="pi pi-search"></i>
+        <input pInputText type="text" (input)="dt.filterGlobal($event.target, 'contains')" placeholder="Buscar">
+      </span>
+        </div>
+    </ng-template>F
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Fecha de creacion de historia clinica</th>
+            <th>Tipo de historia clinica</th>
+            <th>Paciente</th>
+            <th>Personal médico</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-historiaClinica>
+        <tr>
+            <td>{{historiaClinica.fechaDeConsulta}}</td>
+            <td>{{historiaClinica.tipoDeHistoriaClinica}}</td>
+            <td></td>
+            <td></td>
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-text" title="Editar" (click)="editarHistoriaClinica(historiaClinica)"></button> &nbsp;&nbsp;
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text" title="Eliminar" (click)="eliminarHistoriaClinica(historiaClinica)"></button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="3"></td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

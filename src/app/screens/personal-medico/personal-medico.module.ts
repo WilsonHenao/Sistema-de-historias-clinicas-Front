@@ -17,8 +17,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
-import { MultiSelectModule } from 'primeng/multiselect';
-
+import {DropdownModule} from 'primeng/dropdown';
 
 
 @NgModule({
@@ -43,7 +42,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     MessagesModule,
     MessageModule,
     ToastModule,
-    MultiSelectModule
+    DropdownModule
   ]
 })
 export class PersonalMedicoModule { }

@@ -21,22 +21,24 @@ export class PersonalMedicoDialogComponent implements OnInit {
   public formPersonal: FormGroup;
   public tipo: 'nuevo' | 'editar';
   public entidades: EntidadDeSalud[] = new Array<EntidadDeSalud>();
-
+  
   constructor(
     public dialogRef: MatDialogRef<PersonalMedicoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: PersonalData,
     private servicePersonal: ServicioService
-  ) {
+  ) { 
     this.personal = data.personal;
     this.tipo = data.tipo;
     this.formPersonal = this.inicializarFormPersonal();
-   }
+  }
 
   ngOnInit(): void {
+    this.listarEntidadDeSalud();
   }
 
   inicializarFormPersonal(): FormGroup {
     return new FormGroup({
+      idEntidadDeSalud: new FormControl(this.personal?.idEntidadDeSalud, Validators.required),
       nombre: new FormControl(this.personal?.nombre, Validators.required),
       apellidos: new FormControl(this.personal?.apellido, Validators.required),
       especialidad: new FormControl(this.personal?.especialidad, Validators.required)
@@ -44,18 +46,18 @@ export class PersonalMedicoDialogComponent implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close({ update: false });
   }
 
   enviarPersonal(): void {
+    this.personal.idEntidadDeSalud = this.formPersonal.get("idEntidadDeSalud")?.value;
     this.personal.nombre = this.formPersonal.get("nombre")?.value;
     this.personal.apellido = this.formPersonal.get("apellidos")?.value;
     this.personal.especialidad = this.formPersonal.get("especialidad")?.value;
-
     if (this.tipo === 'nuevo') {
-      this.dialogRef.close(this.data);
       this.servicePersonal.enviarPersonalMedico(this.personal).subscribe(
         respuesta => {
+          this.dialogRef.close({ data: this.data, update: true });
           console.log(respuesta);
         },
         error => {
@@ -65,9 +67,9 @@ export class PersonalMedicoDialogComponent implements OnInit {
     }
 
     if (this.tipo === 'editar') {
-      this.dialogRef.close(this.data);
       this.servicePersonal.actualizarPersonalMedico(this.personal).subscribe(
         respuesta => {
+          this.dialogRef.close({ data: this.data, update: true });
           console.log(respuesta);
         },
         error => {

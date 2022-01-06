@@ -27,17 +27,19 @@ export class PersonalMedicoComponent implements OnInit {
   openNew() {
     const dialogRef = this.dialog.open(PersonalMedicoDialogComponent, {
       width: '450px',
-      data: { entidad: {}, tipo: 'nuevo' }
+      data: { personal: new PersonalMedico(), tipo: 'nuevo' }
     })
 
     dialogRef.afterClosed().subscribe(result => {
-      this.personal.push(result);
-      this.listarPersonalMedico();
-      this.messageService.add({
-      severity: 'success',
-      detail: 'Personal médico creado',
-      life: 3000
-      });
+      if (result?.update) {
+        this.personal.push(result);
+        this.listarPersonalMedico();
+        this.messageService.add({
+        severity: 'success',
+        detail: 'Personal médico creado',
+        life: 3000
+        });
+      }
     })
   }
 
@@ -48,15 +50,15 @@ export class PersonalMedicoComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(result => {
-      this.messageService.add({
+      if (result?.update){
+        this.messageService.add({
         severity: 'success',
         detail: 'Personal médico actualizado',
         life: 3000
-      });
+        });
+      }
     })
   }
-
-
 
   ngOnInit(): void {
     this.loading = false;
@@ -66,7 +68,14 @@ export class PersonalMedicoComponent implements OnInit {
   listarPersonalMedico() {
     this.servicePersonalMedico.listarPersonalMedico().subscribe(respuesta => {
       this.personal = respuesta;
-      console.log(respuesta);
+      this.servicePersonalMedico.listarEntidad().subscribe(success => {
+        const entidades = success;
+        this.personal = this.personal.map(p => {
+          const entidad = entidades.find(e => e.id === p.idEntidadDeSalud);
+          p.entidadDeSalud = entidad?.nombre;
+          return p;
+        });
+      });
     }, error => {
       console.log("error");
     });

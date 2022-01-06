@@ -28,13 +28,15 @@ export class EntidadComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(result => {
-      this.entidad.push(result);
-      this.listarEntidadDeSalud();
-      this.messageService.add({
+      if (result?.update){
+        this.entidad.push(result);
+        this.listarEntidadDeSalud();
+        this.messageService.add({
         severity: 'success',
         detail: 'Entidad creada',
         life: 3000
       });
+      }
     })
   }
 
@@ -45,11 +47,13 @@ export class EntidadComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe(result => {
-      this.messageService.add({
-        severity: 'success',
-        detail: 'Entidad actualizada',
-        life: 3000
-      });
+      if (result?.update){
+          this.messageService.add({
+          severity: 'success',
+          detail: 'Entidad actualizada',
+          life: 3000
+        });
+      }
     })
   }
 

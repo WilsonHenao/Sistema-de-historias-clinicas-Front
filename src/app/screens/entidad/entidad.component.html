@@ -6,7 +6,7 @@
   </p-button>
 </div>
 
-<p-table #dt [rows]="10" dataKey="id" [value]="entidad" [paginator]="true" [loading]="loading" responsiveLayout="scroll"
+<p-table #dt [rows]="5" dataKey="id" [value]="entidad" [paginator]="true" [loading]="loading" responsiveLayout="scroll"
   [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,15]" [globalFilterFields]="['nombre']"
   currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entidades">
   <ng-template pTemplate="caption">

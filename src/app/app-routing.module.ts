@@ -13,11 +13,11 @@ const routes: Routes = [
   },
   {
     path: 'paciente', 
-    loadChildren: () => import('./screens/entidad/entidad.module').then(m => m.EntidadModule)
+    loadChildren: () => import('./screens/paciente/paciente.module').then(m => m.PacienteModule)
   },
   {
     path: 'historia_clinica', 
-    loadChildren: () => import('./screens/entidad/entidad.module').then(m => m.EntidadModule)
+    loadChildren: () => import('./screens/historia-clinica/historia-clinica.module').then(m => m.HistoriaClinicaModule)
   },
   { path: '', pathMatch: 'full', redirectTo: 'entidad' },
 ];

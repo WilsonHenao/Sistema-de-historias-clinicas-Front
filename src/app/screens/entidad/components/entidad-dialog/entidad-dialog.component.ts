@@ -42,7 +42,7 @@ export class EntidadDialogComponent implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close({ update: false });
   }
 
   enviarEntidad(): void {
@@ -51,9 +51,9 @@ export class EntidadDialogComponent implements OnInit {
     this.entidad.telefono = this.formEntidad.get("telefono")?.value;
 
     if (this.tipo === 'nuevo') {
-      this.dialogRef.close(this.data);
       this.serviceEntidad.enviarEntidad(this.entidad).subscribe(
         respuesta => {
+          this.dialogRef.close({ data: this.data, update: true });
           console.log(respuesta);
         },
         error => {
@@ -63,9 +63,9 @@ export class EntidadDialogComponent implements OnInit {
     }
 
     if (this.tipo === 'editar') {
-      this.dialogRef.close(this.data);
       this.serviceEntidad.actualizarEntidad(this.entidad).subscribe(
         respuesta => {
+          this.dialogRef.close({ data: this.data, update: true });
           console.log(respuesta);
         },
         error => {

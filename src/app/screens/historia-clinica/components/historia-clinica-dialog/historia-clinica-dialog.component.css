@@ -1,0 +1,21 @@
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.mat-form-field {
+    width: 400px;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+::ng-deep .mat-dialog-container,
+::ng-deep .mat-dialog-content {
+    overflow: unset;
+}

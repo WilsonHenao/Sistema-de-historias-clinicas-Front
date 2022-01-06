@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PacienteRoutingModule } from './paciente-routing.module';
-import { PacienteComponent } from './paciente.component';
-import { PacienteDialogComponent } from './components/paciente-dialog/paciente-dialog.component';
+import { HistoriaClinicaRoutingModule } from './historia-clinica-routing.module';
+import { HistoriaClinicaDialogComponent } from './components/historia-clinica-dialog/historia-clinica-dialog.component';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -17,18 +16,20 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
+import { HistoriaClinicaComponent } from './historia-clinica.component';
+import {DropdownModule} from 'primeng/dropdown';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
   declarations: [
-    PacienteComponent,
-    PacienteDialogComponent
+    HistoriaClinicaComponent,
+    HistoriaClinicaDialogComponent
   ],
   imports: [
     CommonModule,
-    PacienteRoutingModule,
+    HistoriaClinicaRoutingModule,
     TableModule,
     ButtonModule,
     InputTextModule,
@@ -43,8 +44,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MessagesModule,
     MessageModule,
     ToastModule,
-    MatDatepickerModule,
-    MatNativeDateModule
+    DropdownModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ]
 })
-export class PacienteModule { }
+export class HistoriaClinicaModule { }

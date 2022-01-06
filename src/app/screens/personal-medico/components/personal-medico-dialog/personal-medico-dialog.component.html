@@ -2,10 +2,9 @@
 <ng-container>
     <div mat-dialog-content>
         <form [formGroup]="formPersonal">
-            <p-multiSelect 
-            [options]="entidades" 
-            defaultLabel="Seleccione entidad de salud"
-            optionLabel="nombre"></p-multiSelect>
+            <p-dropdown [options]="entidades" formControlName="idEntidadDeSalud" optionValue="id" optionLabel="nombre"
+                [filter]="true" filterBy="nombre" [showClear]="true" placeholder="Seleccione la entidad de salud">
+            </p-dropdown>
             <mat-form-field appearance="outline">
                 <mat-label>Nombre</mat-label>
                 <input type="text" matInput formControlName="nombre">

@@ -4,4 +4,5 @@ export class PersonalMedico{
     public apellido: string | undefined;
     public especialidad: string | undefined;
     public idEntidadDeSalud: number | undefined;
+    public entidadDeSalud: string | undefined;
 }

@@ -6,9 +6,9 @@
   </p-button>
 </div>
 
-<p-table #dt [rows]="10" dataKey="id" [value]="personal" [paginator]="true" [loading]="loading" responsiveLayout="scroll"
+<p-table #dt [rows]="5" dataKey="id" [value]="personal" [paginator]="true" [loading]="loading" responsiveLayout="scroll"
   [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,15]" [globalFilterFields]="['nombre']"
-  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entidades">
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} personal médico">
   <ng-template pTemplate="caption">
     <div class="p-d-flex">
       <span class="p-input-icon-left p-ml-auto">
@@ -19,17 +19,19 @@
   </ng-template>F
   <ng-template pTemplate="header">
     <tr>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Nombre(s)</th>
+      <th>Apellidos</th>
+      <th>Especialidad</th>
+      <th>Entidad de salud</th>
       <th></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-personal>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>{{personal.nombre}}</td>
+      <td>{{personal.apellido}}</td>
+      <td>{{personal.especialidad}}</td>
+      <td>{{personal.entidadDeSalud}}</td>
       <td>
         <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-text" title="Editar"
           (click)="editarPersonalMedico(personal)"></button>

@@ -1,0 +1,111 @@
+<h1 mat-dialog-title>Historias clínicas</h1>
+<ng-container>
+    <div mat-dialog-content>
+        <form [formGroup]="formHistoriaClinica">
+            <div>
+                <div class="flex">
+                    <p-dropdown [options]="personalMedico" formControlName="idPersonalMedico" optionValue="id" optionLabel="nombre" [filter]="true" filterBy="nombre" [showClear]="true" placeholder="Seleccione el personal médico">
+                    </p-dropdown>
+                    <p-dropdown [options]="pacientes" formControlName="idPaciente" optionValue="id" optionLabel="nombre" [filter]="true" filterBy="nombre" [showClear]="true" placeholder="Seleccione el paciente">
+                    </p-dropdown>
+                    <p-dropdown [options]="tiposHC" formControlName="tipoDeHistoriaClinica" placeholder="Tipo de historia clinica" optionValue="nombre" optionLabel="nombre" [showClear]="true">
+                    </p-dropdown>
+                </div>
+
+                <form [formGroup]="formConsulta" *ngIf="tipoDeHistoriaClinicaControl?.value === 'Consulta'" class="flex">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Fecha de consulta</mat-label>
+                        <input matInput formControlName="fechaDeConsulta" [matDatepicker]="dp" [min]="minDate" [max]="maxDate">
+                        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                        <mat-datepicker #dp></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Hora de consulta</mat-label>
+                        <input type="text" matInput formControlName="horaDeConsulta">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Tipo de consulta</mat-label>
+                        <input type="text" matInput formControlName="tipoDeConsulta">
+                    </mat-form-field>
+                    <p-dropdown [options]="causasExternas" formControlName="causaExterna" optionValue="nombre" optionLabel="nombre" [filter]="true" filterBy="nombre" [showClear]="true" placeholder="Causa externa">
+                    </p-dropdown>
+                    <p-dropdown [options]="conductas" formControlName="conducta" optionValue="nombre" optionLabel="nombre" [filter]="true" filterBy="nombre" [showClear]="true" placeholder="Conducta">
+                    </p-dropdown>
+                </form>
+
+                <form [formGroup]="formUrgencias" *ngIf="tipoDeHistoriaClinicaControl?.value === 'Urgencias'" class="flex">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Fecha de ingreso</mat-label>
+                        <input type="text" matInput formControlName="fechaDeIngreso" [matDatepicker]="dp" [min]="minDate" [max]="maxDate">
+                        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                        <mat-datepicker #dp></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Hora de ingreso</mat-label>
+                        <input type="text" matInput formControlName="horaDeIngreso">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Fecha de salida</mat-label>
+                        <input type="text" matInput formControlName="fechaDeSalida" [matDatepicker]="dp1" [min]="minDate" [max]="maxDate">
+                        <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                        <mat-datepicker #dp1></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Hora de salida</mat-label>
+                        <input type="text" matInput formControlName="horaDeSalida">
+                    </mat-form-field>
+                    <p-dropdown [options]="causasExternas" formControlName="causaExterna" optionValue="nombre" optionLabel="nombre" [filter]="true" filterBy="nombre" [showClear]="true" placeholder="Causa externa">
+                    </p-dropdown>
+                    <p-dropdown [options]="conducta" formControlName="conducta" optionValue="nombre" optionLabel="nombre" [filter]="true" filterBy="nombre" [showClear]="true" placeholder="Conducta">
+                    </p-dropdown>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Horas de observacion</mat-label>
+                        <input type="text" matInput formControlName="horasDeObservacion">
+                    </mat-form-field>
+                </form>
+
+                <form [formGroup]="formProcedimientos" *ngIf="conductaConsulta?.value === 'Ordenación de procedimientos'" class="flex">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Fecha de procedimiento</mat-label>
+                        <input type="text" matInput formControlName="fechaDeProcedimiento" [matDatepicker]="dp" [min]="minDate" [max]="maxDate">
+                        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                        <mat-datepicker #dp></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Clase de procedimiento</mat-label>
+                        <input type="text" matInput formControlName="claseDeProcedimiento">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Tipo de procedimiento</mat-label>
+                        <input type="text" matInput formControlName="tipoDeProcedimiento">
+                    </mat-form-field>
+                </form>
+
+                <form [formGroup]="formHospitalizacion" *ngIf="conductaUrgencias?.value === 'Orden de hospitalización'" class="flex">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Fecha de egreso</mat-label>
+                        <input type="text" matInput formControlName="fechaDeEgreso" [matDatepicker]="dp" [min]="minDate" [max]="maxDate">
+                        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                        <mat-datepicker #dp></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Hora de egreso</mat-label>
+                        <input type="text" matInput formControlName="horaDeEgreso">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Dias de estancia</mat-label>
+                        <input type="text" matInput formControlName="diasDeEstancia">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Estado egreso</mat-label>
+                        <input type="text" matInput formControlName="estadoEgreso">
+                    </mat-form-field>
+                </form>
+            </div>
+        </form>
+    </div>
+    <div mat-dialog-actions class="actions">
+        <button mat-button (click)="onNoClick()">Cancelar</button>
+        <button mat-button [disabled]="formHistoriaClinica.invalid" mat-dialog-close="true" (click)="enviarHistoriaClinica()">Añadir</button>
+    </div>
+</ng-container>
